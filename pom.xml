@@ -3,7 +3,7 @@
 
     <groupId>com.github.sakserv</groupId>
     <artifactId>hadoop-mini-clusters</artifactId>
-    <version>0.1.17-SNAPSHOT</version>
+    <version>0.1.17-ACROMANTULA-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Hadoop Mini Clusters</name>
@@ -36,22 +36,27 @@
 
     <repositories>
         <repository>
-            <id>public.repo.hortonworks.com</id>
-            <name>Public Hortonworks Maven Repo</name>
-            <url>https://repo.hortonworks.com/content/groups/public/</url>
+            <id>maven.central</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>flipkart.artifactory</id>
+            <name>Flipkart Artifactory</name>
+            <url>http://artifactory.fkinternal.com/artifactory/v1.0/artifacts/libs-release-local</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus snapshot repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>flipkart.artifactory.snapshot</id>
+            <name>Flipkart Artifactory (Snapshot)</name>
+            <url>http://artifactory.fkinternal.com/artifactory/v1.0/artifacts/libs-snapshots-local</url>
         </snapshotRepository>
         <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Sonatype Nexus release repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>flipkart.artifactory.release</id>
+            <name>Flipkart Artifactory (Release)</name>
+            <url>http://artifactory.fkinternal.com/artifactory/v1.0/artifacts/libs-release-local</url>
         </repository>
     </distributionManagement>
 
@@ -63,15 +68,8 @@
         <module>hadoop-mini-clusters-mapreduce</module>
         <module>hadoop-mini-clusters-hbase</module>
         <module>hadoop-mini-clusters-zookeeper</module>
-        <module>hadoop-mini-clusters-hiveserver2</module>
-        <module>hadoop-mini-clusters-hivemetastore</module>
         <module>hadoop-mini-clusters-storm</module>
         <module>hadoop-mini-clusters-kafka</module>
-        <module>hadoop-mini-clusters-oozie</module>
-        <module>hadoop-mini-clusters-mongodb</module>
-        <module>hadoop-mini-clusters-hyperscaledb</module>
-        <module>hadoop-mini-clusters-knox</module>
-        <module>hadoop-mini-clusters-kdc</module>
     </modules>
 
     <properties>
@@ -94,7 +92,7 @@
 
         <!-- dependency versions -->
         <junit.version>4.12</junit.version>
-        <slf4j.version>1.7.10</slf4j.version>
+        <slf4j.version>1.7.26</slf4j.version>
         <property-parser.version>0.0.2</property-parser.version>
         <jopt-simple.version>4.8</jopt-simple.version>
         <spring-core.version>4.1.5.RELEASE</spring-core.version>
@@ -110,14 +108,12 @@
 
         <!-- Maven Release Plugin doesn't work correctly with properties defined in profiles, duplicate here -->
         <hdp.release.version>2.6.5.0</hdp.release.version>
-        <storm.version>1.1.0.2.6.5.0-292</storm.version>
-        <hive.version>1.2.1000.2.6.5.0-292</hive.version>
-        <hadoop.version>2.7.3.2.6.5.0-292</hadoop.version>
-        <hbase.version>1.1.2.2.6.5.0-292</hbase.version>
-        <kafka.version>1.0.0.2.6.5.0-292</kafka.version>
+        <storm.version>2.1.0</storm.version>
+        <hadoop.version>3.2.1</hadoop.version>
+        <hbase.version>2.2.3</hbase.version>
+        <kafka.version>2.3.1</kafka.version>
         <kafka.artifactid.version>kafka_2.11</kafka.artifactid.version>
-        <oozie.version>4.2.0.2.6.5.0-292</oozie.version>
-        <knox.version>0.12.0.2.6.5.0-292</knox.version>
+        <oozie.version>5.2.0</oozie.version>
 
     </properties>
 
@@ -126,6 +122,18 @@
         <!--
             Build profiles to use different versions of Hadoop
         -->
+
+        <profile>
+            <id>acromantula</id>
+            <properties>
+                <storm.version>2.1.0</storm.version>
+                <hadoop.version>3.2.1</hadoop.version>
+                <hbase.version>2.2.3</hbase.version>
+                <kafka.version>2.3.1</kafka.version>
+                <kafka.artifactid.version>kafka_2.11</kafka.artifactid.version>
+                <oozie.version>5.2.0</oozie.version>
+            </properties>
+        </profile>
 
         <!-- HDP 2.6.5.0 -->
         <profile>

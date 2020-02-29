@@ -18,6 +18,7 @@ import com.github.sakserv.minicluster.util.FileUtils;
 import org.apache.storm.ILocalCluster;
 import org.apache.storm.Testing;
 import org.apache.storm.generated.*;
+import org.apache.storm.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -173,7 +174,7 @@ public class StormLocalCluster implements MiniCluster {
     }
 
     public void submitTopology(String topologyName, Config conf, StormTopology topology)
-            throws AlreadyAliveException, InvalidTopologyException {
+            throws TException {
         localCluster.submitTopology(topologyName, conf, topology);
     }
 

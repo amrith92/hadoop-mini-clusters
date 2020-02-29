@@ -50,6 +50,7 @@ public class KafkaLocalBroker implements MiniCluster {
     private Properties kafkaProperties;
     private String kafkaTempDir;
     private String zookeeperConnectionString;
+    private Short replicationFactor;
 
     public String getKafkaHostname() {
         return kafkaHostname;
@@ -74,7 +75,11 @@ public class KafkaLocalBroker implements MiniCluster {
     public String getZookeeperConnectionString() {
         return zookeeperConnectionString;
     }
-    
+
+    public Short getReplicationFactor() {
+        return replicationFactor;
+    }
+
     private KafkaLocalBroker(Builder builder) {
         this.kafkaHostname = builder.kafkaHostname;
         this.kafkaPort = builder.kafkaPort;
@@ -82,10 +87,9 @@ public class KafkaLocalBroker implements MiniCluster {
         this.kafkaProperties = builder.kafkaProperties;
         this.kafkaTempDir = builder.kafkaTempDir;
         this.zookeeperConnectionString = builder.zookeeperConnectionString;
-        
+        this.replicationFactor = builder.replicationFactor;
     }
 
-    
     public static class Builder {
         private String kafkaHostname;
         private Integer kafkaPort;
@@ -93,6 +97,7 @@ public class KafkaLocalBroker implements MiniCluster {
         private Properties kafkaProperties;
         private String kafkaTempDir;
         private String zookeeperConnectionString;
+        private Short replicationFactor = 1;
         
         public Builder setKafkaHostname(String kafkaHostname) {
             this.kafkaHostname = kafkaHostname;
@@ -154,6 +159,11 @@ public class KafkaLocalBroker implements MiniCluster {
             if(kafkaLocalBroker.zookeeperConnectionString == null) {
                 throw new IllegalArgumentException("ERROR: Missing required config: Zookeeper Connection String");
             }
+        }
+
+        public Builder setReplicationFactor(final Short replicationFactor) {
+            this.replicationFactor = replicationFactor;
+            return this;
         }
     }
 
@@ -220,6 +230,11 @@ public class KafkaLocalBroker implements MiniCluster {
         kafkaProperties.put("log.dir", kafkaTempDir);
         kafkaProperties.put("enable.zookeeper", "true");
         kafkaProperties.put("zookeeper.connect", zookeeperConnectionString);
+        kafkaProperties.put("offsets.topic.replication.factor", replicationFactor);
+        kafkaProperties.put("transaction.state.log.replication.factor", replicationFactor);
+        kafkaProperties.put("default.replication.factor", Integer.valueOf(replicationFactor));
+        kafkaProperties.put("config.storage.replication.factor", replicationFactor);
+        kafkaProperties.put("status.storage.replication.factor", replicationFactor);
         kafkaConfig = KafkaConfig.fromProps(kafkaProperties);
     }
 

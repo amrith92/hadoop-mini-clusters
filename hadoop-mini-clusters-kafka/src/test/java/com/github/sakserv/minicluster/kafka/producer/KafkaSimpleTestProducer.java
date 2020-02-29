@@ -118,7 +118,7 @@ public class KafkaSimpleTestProducer {
             }
             String payload = obj.toString();
 
-            producer.send(new ProducerRecord<String, String>(getTopic(), payload));
+            producer.send(new ProducerRecord<String, String>(getTopic(), 0, String.valueOf(count), payload));
             LOG.info("Sent message: {}", payload.toString());
             count++;
         }

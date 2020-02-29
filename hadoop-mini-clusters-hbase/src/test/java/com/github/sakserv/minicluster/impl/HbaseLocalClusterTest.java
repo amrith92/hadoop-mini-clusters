@@ -13,22 +13,20 @@
  */
 package com.github.sakserv.minicluster.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-
+import com.github.sakserv.minicluster.config.ConfigVars;
+import com.github.sakserv.propertyparser.PropertyParser;
 import org.apache.hadoop.conf.Configuration;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.sakserv.minicluster.config.ConfigVars;
-import com.github.sakserv.propertyparser.PropertyParser;
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class HbaseLocalClusterTest {
     // Logger
@@ -66,19 +64,6 @@ public class HbaseLocalClusterTest {
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -103,19 +88,6 @@ public class HbaseLocalClusterTest {
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -140,19 +112,6 @@ public class HbaseLocalClusterTest {
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -177,19 +136,6 @@ public class HbaseLocalClusterTest {
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -214,19 +160,6 @@ public class HbaseLocalClusterTest {
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -252,19 +185,6 @@ public class HbaseLocalClusterTest {
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -290,19 +210,6 @@ public class HbaseLocalClusterTest {
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -328,19 +235,6 @@ public class HbaseLocalClusterTest {
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -365,19 +259,6 @@ public class HbaseLocalClusterTest {
                 .setZookeeperConnectionString(propertyParser.getProperty(ConfigVars.ZOOKEEPER_CONNECTION_STRING_KEY))
                 .setZookeeperZnodeParent(propertyParser.getProperty(ConfigVars.HBASE_ZNODE_PARENT_KEY))
                 .setHbaseConfiguration(new Configuration())
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
 
@@ -403,88 +284,6 @@ public class HbaseLocalClusterTest {
                 .setZookeeperZnodeParent(propertyParser.getProperty(ConfigVars.HBASE_ZNODE_PARENT_KEY))
                 .setHbaseWalReplicationEnabled(
                         Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.HBASE_WAL_REPLICATION_ENABLED_KEY)))
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
                 .build();
     }
-
-
-    @Test
-    public void testHbaseRestPort() {
-        assertEquals(Integer.parseInt(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)),
-                (int) hbaseLocalCluster.getHbaseRestLocalCluster().getHbaseRestPort());
-    }
-
-    @Test
-    public void testMissingHbaseRestPort() {
-        exception.expect(IllegalArgumentException.class);
-        hbaseLocalCluster = new HbaseLocalCluster.Builder()
-                .setHbaseMasterPort(
-                        Integer.parseInt(propertyParser.getProperty(ConfigVars.HBASE_MASTER_PORT_KEY)))
-                .setHbaseMasterInfoPort(
-                        Integer.parseInt(propertyParser.getProperty(ConfigVars.HBASE_MASTER_INFO_PORT_KEY)))
-                .setNumRegionServers(
-                        Integer.parseInt(propertyParser.getProperty(ConfigVars.HBASE_NUM_REGION_SERVERS_KEY)))
-                .setHbaseRootDir(propertyParser.getProperty(ConfigVars.HBASE_ROOT_DIR_KEY))
-                .setZookeeperPort(
-                        Integer.parseInt(propertyParser.getProperty(ConfigVars.ZOOKEEPER_PORT_KEY)))
-                .setZookeeperConnectionString(propertyParser.getProperty(ConfigVars.ZOOKEEPER_CONNECTION_STRING_KEY))
-                .setZookeeperZnodeParent(propertyParser.getProperty(ConfigVars.HBASE_ZNODE_PARENT_KEY))
-                .activeRestGateway()
-                    .setHbaseRestHost(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY))
-                    .setHbaseRestPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_PORT_KEY)))
-                    .setHbaseRestInfoPort(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)))
-                    .setHbaseRestReadOnly(
-                            Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)))
-                    .setHbaseRestThreadMax(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)))
-                    .setHbaseRestThreadMin(
-                            Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)))
-                    .build()
-                .build();
-    }
-
-    @Test
-    public void testHbaseRestInfoPort() {
-        assertEquals(Integer.parseInt(propertyParser.getProperty(ConfigVars.HBASE_REST_INFO_PORT_KEY)),
-                (int) hbaseLocalCluster.getHbaseRestLocalCluster().getHbaseRestInfoPort());
-    }
-
-    @Test
-    public void testHbaseRestHost() {
-        assertEquals(propertyParser.getProperty(ConfigVars.HBASE_REST_HOST_KEY),
-                hbaseLocalCluster.getHbaseRestLocalCluster().getHbaseRestHost());
-    }
-
-    @Test
-    public void testHbaseRestReadOnly() {
-        assertEquals(Boolean.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_READONLY_KEY)),
-                hbaseLocalCluster.getHbaseRestLocalCluster().getHbaseRestReadOnly());
-    }
-
-    @Test
-    public void testHbaseRestThreadMax() {
-        assertEquals(Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMAX_KEY)),
-                hbaseLocalCluster.getHbaseRestLocalCluster().getHbaseRestThreadMax());
-    }
-
-    @Test
-    public void testHbaseRestThreadMin() {
-        assertEquals(Integer.valueOf(propertyParser.getProperty(ConfigVars.HBASE_REST_THREADMIN_KEY)),
-                hbaseLocalCluster.getHbaseRestLocalCluster().getHbaseRestThreadMin());
-    }
-
 }

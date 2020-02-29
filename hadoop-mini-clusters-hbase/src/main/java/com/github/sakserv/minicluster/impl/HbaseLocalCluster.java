@@ -38,8 +38,6 @@ public class HbaseLocalCluster implements MiniCluster {
     private String zookeeperZnodeParent;
     private Boolean hbaseWalReplicationEnabled;
     private Configuration hbaseConfiguration;
-    private Boolean restActivated = false;
-    private HbaseRestLocalCluster hbaseRestLocalCluster;
 
     public Integer getHbaseMasterPort() {
         return hbaseMasterPort;
@@ -77,14 +75,6 @@ public class HbaseLocalCluster implements MiniCluster {
         return hbaseConfiguration;
     }
 
-    public Boolean isRestActivated() {
-        return restActivated;
-    }
-
-    public HbaseRestLocalCluster getHbaseRestLocalCluster() {
-        return hbaseRestLocalCluster;
-    }
-
     private HbaseLocalCluster(Builder builder) {
         this.hbaseMasterPort = builder.hbaseMasterPort;
         this.hbaseMasterInfoPort = builder.hbaseMasterInfoPort;
@@ -95,8 +85,6 @@ public class HbaseLocalCluster implements MiniCluster {
         this.zookeeperZnodeParent = builder.zookeeperZnodeParent;
         this.hbaseWalReplicationEnabled = builder.hbaseWalReplicationEnabled;
         this.hbaseConfiguration = builder.hbaseConfiguration;
-        this.restActivated = builder.restActivated;
-        this.hbaseRestLocalCluster = builder.hbaseRestLocalCluster;
 
     }
 
@@ -110,8 +98,6 @@ public class HbaseLocalCluster implements MiniCluster {
         private String zookeeperZnodeParent;
         private Boolean hbaseWalReplicationEnabled;
         private Configuration hbaseConfiguration;
-        private Boolean restActivated = false;
-        private HbaseRestLocalCluster hbaseRestLocalCluster;
 
         public Builder setHbaseMasterPort(Integer hbaseMasterPort) {
             this.hbaseMasterPort = hbaseMasterPort;
@@ -162,15 +148,6 @@ public class HbaseLocalCluster implements MiniCluster {
             return hbaseConfiguration;
         }
 
-        void setHbaseRestLocalCluster(HbaseRestLocalCluster hbaseRestLocalCluster) {
-            this.hbaseRestLocalCluster = hbaseRestLocalCluster;
-        }
-
-        public HbaseRestLocalCluster.RestBuilder activeRestGateway() {
-            this.restActivated = true;
-            return new HbaseRestLocalCluster.RestBuilder(this);
-        }
-
         public HbaseLocalCluster build() {
             HbaseLocalCluster hbaseLocalCluster = new HbaseLocalCluster(this);
             validateObject(hbaseLocalCluster);
@@ -213,11 +190,6 @@ public class HbaseLocalCluster implements MiniCluster {
         LOG.info("HBASE: Starting MiniHBaseCluster");
         configure();
         miniHBaseCluster = new MiniHBaseCluster(hbaseConfiguration, numRegionServers);
-        miniHBaseCluster.startMaster();
-        miniHBaseCluster.startRegionServer();
-        if (isRestActivated()) {
-            getHbaseRestLocalCluster().start();
-        }
     }
 
     @Override
@@ -228,11 +200,6 @@ public class HbaseLocalCluster implements MiniCluster {
     @Override
     public void stop(boolean cleanUp) throws Exception {
         LOG.info("HBASE: Stopping MiniHBaseCluster");
-
-        if (isRestActivated()) {
-            getHbaseRestLocalCluster().cleanUp();
-            getHbaseRestLocalCluster().stop();
-        }
 
         miniHBaseCluster.flushcache();
         miniHBaseCluster.close();
@@ -258,7 +225,7 @@ public class HbaseLocalCluster implements MiniCluster {
         hbaseConfiguration.set(HConstants.ZOOKEEPER_CLIENT_PORT, zookeeperPort.toString());
         hbaseConfiguration.set(HConstants.ZOOKEEPER_QUORUM, zookeeperConnectionString);
         hbaseConfiguration.set(HConstants.ZOOKEEPER_ZNODE_PARENT, zookeeperZnodeParent);
-        hbaseConfiguration.set(HConstants.REPLICATION_ENABLE_KEY, hbaseWalReplicationEnabled.toString());
+        hbaseConfiguration.set("hbase.unsafe.stream.capability.enforce", "false");
         hbaseConfiguration.set("hbase.splitlog.manager.unassigned.timeout", "999999999");
         hbaseConfiguration.set("hbase.splitlog.manager.timeoutmonitor.period", "999999999");
         hbaseConfiguration.set("hbase.master.logcleaner.plugins", "org.apache.hadoop.hbase.master.cleaner.TimeToLiveLogCleaner");

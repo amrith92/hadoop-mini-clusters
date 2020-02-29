@@ -13,7 +13,10 @@
  */
 package com.github.sakserv.minicluster.systemtime;
 
+import org.apache.kafka.common.errors.TimeoutException;
 import org.apache.kafka.common.utils.Time;
+
+import java.util.function.Supplier;
 
 public class LocalSystemTime implements Time {
 
@@ -33,6 +36,21 @@ public class LocalSystemTime implements Time {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
             // no stress
+        }
+    }
+
+    @Override
+    public void waitObject(final Object object, final Supplier<Boolean> condition, final long deadlineMs) throws InterruptedException {
+        //noinspection SynchronizationOnLocalVariableOrMethodParameter
+        synchronized(object) {
+            while(!condition.get()) {
+                long currentTimeMs = this.milliseconds();
+                if (currentTimeMs >= deadlineMs) {
+                    throw new TimeoutException("Condition not satisfied before deadline");
+                }
+
+                object.wait(deadlineMs - currentTimeMs);
+            }
         }
     }
 
